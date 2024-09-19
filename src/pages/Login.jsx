@@ -1,11 +1,10 @@
-// src/pages/Login.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
-import '../styles/login.css'; // Import the CSS file
+import '../styles/login.css'; 
 
-const Login = () => {
+const Login = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -14,12 +13,16 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+ 
       await signInWithEmailAndPassword(auth, email, password);
-      navigate('/'); // Redirect to home page on success
-    } catch (error) {
-      setError(error.message);
+      setIsAuthenticated(true);
+      navigate('/dashboard');
+    } catch (err) {
+      setError(err.message);
     }
   };
+
+
 
   return (
     <div className="login-container">
@@ -52,3 +55,4 @@ const Login = () => {
 };
 
 export default Login;
+

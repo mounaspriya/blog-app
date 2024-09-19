@@ -1,27 +1,24 @@
-// src/pages/Home.jsx
+
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addBlog, updateBlog, deleteBlog } from '../features/blogSlice';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import { v4 as uuidv4 } from 'uuid';
-import '../styles/home.css'; // Import the CSS file
+import '../styles/home.css'; 
 
-const Home = () => {
+const Dashboard = ({ isAuthenticated, setIsAuthenticated }) => {
   const blogs = useSelector((state) => state.blogs.posts);
   const dispatch = useDispatch();
-
-  // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 5; // Number of posts per page
+  const postsPerPage = 5; 
 
-  // Calculations for pagination
+
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = blogs.slice(indexOfFirstPost, indexOfLastPost);
   const totalPages = Math.ceil(blogs.length / postsPerPage);
 
-  // State for modals
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -30,7 +27,7 @@ const Home = () => {
   const [description, setDescription] = useState('');
   const [coverImage, setCoverImage] = useState('');
 
-  // Handlers for modals and form submissions
+
   const handleAddButtonClick = () => {
     setIsAddModalOpen(true);
   };
@@ -79,7 +76,7 @@ const Home = () => {
           coverImage,
         })
       );
-      handleCloseAddModal(); // Close modal after submission
+      handleCloseAddModal(); 
     }
   };
 
@@ -94,14 +91,14 @@ const Home = () => {
           coverImage,
         })
       );
-      handleCloseEditModal(); // Close modal after updating
+      handleCloseEditModal();
     }
   };
 
   const handleDelete = () => {
     if (currentBlog) {
       dispatch(deleteBlog(currentBlog.id));
-      handleCloseDeleteModal(); // Close modal after deletion
+      handleCloseDeleteModal(); 
     }
   };
 
@@ -110,9 +107,12 @@ const Home = () => {
   };
 
   return (
-    <div className="home-container">
-      <Navbar />
+    <div className="dashboard-container">
+
+      <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
+      
       <h1>Blog Posts</h1>
+      
       {currentPosts.length === 0 ? (
         <div className="welcome-message">
           <p>Welcome! There are no blog posts yet.</p>
@@ -123,10 +123,7 @@ const Home = () => {
             <div key={blog.id} className="blog-item">
               <Link to={`/blog/${blog.id}`}>
                 <h2>{blog.title}</h2>
-                <img
-                  src={blog.coverImage}
-                  alt={blog.title}
-                />
+                <img src={blog.coverImage} alt={blog.title} />
               </Link>
               <button onClick={() => handleEditButtonClick(blog)}>Edit</button>
               <button onClick={() => handleDeleteButtonClick(blog)}>Delete</button>
@@ -134,9 +131,10 @@ const Home = () => {
           ))}
         </div>
       )}
+      
       <button className="add-button" onClick={handleAddButtonClick}>Add New Blog Post</button>
 
-      {/* Pagination Controls */}
+   
       {totalPages > 1 && (
         <div className="pagination">
           {Array.from({ length: totalPages }, (_, index) => (
@@ -151,37 +149,55 @@ const Home = () => {
         </div>
       )}
 
-      {/* Add Modal */}
-      {isAddModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <span className="close-button" onClick={handleCloseAddModal}>&times;</span>
-            <h2>Add a New Blog Post</h2>
-            <form onSubmit={handleSubmitAdd}>
-              <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder="Blog Title"
-              />
-              <textarea
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                placeholder="Blog Description"
-              />
-              <input
-                type="text"
-                value={coverImage}
-                onChange={(e) => setCoverImage(e.target.value)}
-                placeholder="Cover Image URL"
-              />
-              <button type="submit">Add Blog Post</button>
-            </form>
-          </div>
-        </div>
-      )}
 
-      {/* Edit Modal */}
+      {isAddModalOpen && (
+  <div className="modal-overlay">
+    <div className="modal-content">
+      <span className="close-button" onClick={handleCloseAddModal}>&times;</span>
+      <h2>Add a New Blog Post</h2>
+      <form onSubmit={handleSubmitAdd}>
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Blog Title"
+          required
+        />
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Blog Description"
+          required
+        />
+        <input
+          type="text"
+          value={coverImage}
+          onChange={(e) => setCoverImage(e.target.value)}
+          placeholder="Cover Image URL"
+          required
+        />
+
+
+        {(!title || !description || !coverImage) && (
+          <p style={{ color: 'red', marginTop: '10px' }}>
+            All fields are required.
+          </p>
+        )}
+
+        
+        <button
+          type="submit"
+          disabled={!title || !description || !coverImage} 
+        >
+          Add Blog Post
+        </button>
+      </form>
+    </div>
+  </div>
+)}
+
+
+
       {isEditModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
@@ -211,7 +227,7 @@ const Home = () => {
         </div>
       )}
 
-      {/* Delete Modal */}
+  
       {isDeleteModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
@@ -227,4 +243,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Dashboard;

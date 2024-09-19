@@ -1,10 +1,9 @@
-// src/pages/Signup.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
-import '../styles/signup.css'; // Import the CSS file
-// import { signUp } from '../utils/authUtils';
+import '../styles/signup.css'; 
+
 
 const Signup = () => {
   const [name, setName] = useState('');
@@ -22,7 +21,7 @@ const Signup = () => {
     }
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      navigate('/login'); // Redirect to login page on success
+      navigate('/login'); 
     } catch (error) {
       setError(error.message);
     }
@@ -65,8 +64,9 @@ const Signup = () => {
           />
           <button type="submit">Sign Up</button>
         </form>
+        Already have an account? 
         <p className="login-link">
-          Already have an account? <a href="/login">Login</a>
+       <a href="/login">Login</a>
         </p>
       </div>
     </div>

@@ -1,10 +1,9 @@
-// src/features/blogSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const blogSlice = createSlice({
   name: 'blogs',
   initialState: {
-    posts: [], // Array to hold all blog posts
+    posts: [], 
     currentPage: 1,
     postsPerPage: 5,
   },
@@ -30,7 +29,7 @@ const blogSlice = createSlice({
 export const { addBlog, deleteBlog, updateBlog, setCurrentPage } = blogSlice.actions;
 export default blogSlice.reducer;
 
-// Selector to get paginated posts
+
 export const selectPaginatedPosts = (state) => {
   const { posts, currentPage, postsPerPage } = state.blogs;
   const startIndex = (currentPage - 1) * postsPerPage;

@@ -10,6 +10,6 @@ export const signUp = async (email, password) => {
     return user;
   } catch (error) {
     console.error('Error signing up:', error);
-    throw error; // Rethrow error to handle it in the caller
+    throw error; 
   }
 };
