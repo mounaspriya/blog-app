@@ -1,0 +1,250 @@
+/* src/styles/App.css */
+
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+/* Navbar Styles */
+nav {
+  background: #333;
+  color: #fff;
+  padding: 1rem;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+}
+
+nav ul li {
+  margin: 0;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+nav ul li a:hover {
+  background: #575757;
+}
+
+/* Home Page Styles */
+.home-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.welcome-message {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.blog-list {
+  margin-bottom: 2rem;
+}
+
+.blog-item {
+  margin-bottom: 1rem;
+}
+
+.blog-item img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.add-blog-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.add-blog-form input,
+.add-blog-form textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.add-blog-form button {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.add-blog-form button:hover {
+  background: #575757;
+}
+/* src/styles/home.css */
+
+/* Existing styles */
+
+/* Add Button */
+.add-button {
+  display: block;
+  width: 200px;
+  margin: 2rem auto;
+  padding: 0.5rem;
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.add-button:hover {
+  background: #575757;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal Content */
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 5px;
+  width: 80%;
+  max-width: 500px;
+  position: relative;
+}
+
+.modal-content input,
+.modal-content textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.modal-content button {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.modal-content h2 {
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 15px;
+  word-wrap: break-word; /* Ensures long words break to fit */
+  overflow-wrap: break-word; /* Ensures text wraps within the container */
+}
+button {
+  margin: 10px 5px; /* Add horizontal and vertical margin */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.modal-content button:hover {
+  background: #575757;
+}
+
+/* Close Button */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.add-button,
+.blog-item button {
+  display: inline-block;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.blog-item button {
+  background: #007bff;
+  margin-right: 0.5rem;
+}
+
+.blog-item button:last-child {
+  background: #dc3545;
+}
+
+.add-button:hover,
+.blog-item button:hover {
+  background: #575757;
+}
+
+.blog-item button:hover {
+  background: #0056b3;
+}
+
+.blog-item button:last-child:hover {
+  background: #c82333;
+}
+/* src/styles/home.css */
+/* src/styles/home.css */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+}
+
+.pagination button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
