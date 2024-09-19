@@ -15,5 +15,8 @@ i already signup with my id so you can login
 psjan71@gmail.com
 Admin@123
 
-after login you can add your blog , you can also add blog without login or signup 
+after login you can add your blog 
+i have also added logout button along with login/signup with other account as well 
 i added pagination after 5 blog
+
+note: because of short time duration not doing much css on blog post 
